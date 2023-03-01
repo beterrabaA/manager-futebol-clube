@@ -2,7 +2,7 @@ FROM node:16.14
 
 WORKDIR /app-backend
 
-COPY package*.json ./
+COPY package*.{json,npm} ./
 
 RUN npm install
 
