@@ -15,8 +15,9 @@ export default class TeamService {
     return { type: 'success', message: teams };
   }
 
-  // export const getById = async (id: number) => {
-  //   const team = await Teams.findByPk(id);
-  //   return team;
-  // };
+  public async getById(id: number): Promise<TypeMsg> {
+    const team = await this.model.findByPk(id);
+
+    return { type: 'success', message: team };
+  }
 }
