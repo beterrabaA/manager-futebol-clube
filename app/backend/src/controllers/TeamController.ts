@@ -14,6 +14,13 @@ class TeamController {
 
     return res.status(mapError(type)).json(message);
   };
+
+  public findById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { type, message } = await this.service.getById(Number(id));
+
+    return res.status(mapError(type)).json(message);
+  };
 }
 
 export default TeamController;
