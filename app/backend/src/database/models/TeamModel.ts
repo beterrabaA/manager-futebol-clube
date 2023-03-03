@@ -29,3 +29,5 @@ Teams.init(
 );
 
 export default Teams;
+
+// http://localhost:3001/teams
