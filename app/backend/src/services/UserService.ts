@@ -21,7 +21,7 @@ export default class UserService {
       { where: { email } },
     );
 
-    const vPass = bcrypt.compareSync(password, users?.dataValues.password);
+    const vPass = bcrypt.compareSync(password, users?.dataValues.password || '-');
 
     console.log(users?.dataValues);
     if (!users || !vPass) {
