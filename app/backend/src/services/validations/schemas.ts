@@ -7,7 +7,7 @@ export const loginSchema = Joi.object({
   password: Joi.string().empty().required(),
 }).messages({
   'string.empty': ALL_FIELDS_REQUIRED,
-  'string.email': ALL_FIELDS_REQUIRED,
+  'string.email': 'Invalid email or password',
   'any.required': ALL_FIELDS_REQUIRED,
 });
 
