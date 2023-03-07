@@ -34,4 +34,9 @@ export default class UserService {
 
     return { type: 'success', message: { token } };
   }
+
+  public async getUserByEmail(email: string) {
+    const user = await this.model.findOne({ where: { email } });
+    return user;
+  }
 }
