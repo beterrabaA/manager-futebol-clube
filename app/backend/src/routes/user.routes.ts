@@ -9,7 +9,7 @@ const controller = new UserController();
 
 const { validateJWT } = new Midlleware();
 
-userRouter.post('/login', validateJWT, controller.login); // POST /login (login)
+userRouter.post('/login', controller.login); // POST /login (login)
 
 userRouter.get('/login/role', validateJWT, controller.role); // GET /role (role)
 
