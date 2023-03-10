@@ -1,9 +1,9 @@
 import { ModelStatic } from 'sequelize';
 import * as bcrypt from 'bcryptjs';
-import { tokenGenerator } from '../utils/token';
 import Users from '../database/models/UserModel';
 import TypeMsg from '../interfaces/resService.interface';
 import validateLogin from './validations/validationsInputsValues';
+import Iuser from '../interfaces/user.interface';
 
 export default class UserService {
   public model: ModelStatic<Users>;
@@ -30,13 +30,11 @@ export default class UserService {
           message: 'Invalid email or password' } };
     }
 
-    const token = tokenGenerator(users?.dataValues);
-
-    return { type: 'success', message: { token } };
+    return { type: '', message: users };
   }
 
-  public async getUserByEmail(email: string) {
+  public async getUserByEmail(email: string): Promise<Iuser> {
     const user = await this.model.findOne({ where: { email } });
-    return user;
+    return user?.dataValues;
   }
 }
