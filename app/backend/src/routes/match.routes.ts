@@ -8,4 +8,6 @@ const matController = new MatchController();
 
 matchRouter.get('/matches', matController.findAll); // GET /teams
 
+matchRouter.patch('/matches/:id/finish', matController.finish); // PATCH /teams/:id/finish
+
 export default matchRouter;
