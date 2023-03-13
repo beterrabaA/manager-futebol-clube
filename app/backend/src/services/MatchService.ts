@@ -1,6 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import Teams from '../database/models/TeamModel';
 import Matches from '../database/models/MatchModel';
+import MatchData from '../interfaces/matchData.interface';
 
 export default class MatchService {
   private model: ModelStatic<Matches>;
@@ -43,6 +44,23 @@ export default class MatchService {
       match.inProgress = false;
       await match.save();
       return { type: 'success', message: 'Finished' };
+    }
+
+    return { type: 'badRequest', message: 'Match already finished' };
+  }
+
+  public async updateMatch(id: number, data: MatchData) {
+    const match = await this.model.findByPk(id);
+
+    if (!match) {
+      return { type: 'notFound', message: 'Match not found' };
+    }
+
+    if (match.inProgress) {
+      match.homeTeamGoals = data.homeTeamGoals;
+      match.awayTeamGoals = data.awayTeamGoals;
+      await match.save();
+      return { type: 'success', message: 'Updated' };
     }
 
     return { type: 'badRequest', message: 'Match already finished' };
