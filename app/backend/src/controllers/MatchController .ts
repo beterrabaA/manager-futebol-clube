@@ -31,6 +31,18 @@ class MatchController {
 
     return res.status(mapError(type)).json({ message });
   };
+
+  public update = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+
+    const { type, message } = await this.service.updateMatch(Number(id), {
+      homeTeamGoals,
+      awayTeamGoals,
+    });
+
+    return res.status(mapError(type)).json({ message });
+  };
 }
 
 export default MatchController;
