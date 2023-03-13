@@ -1,6 +1,7 @@
+import Match from '../../interfaces/match.interface';
 import { loginSchema } from './schemas';
 
-const validateLogin = (email: string, password: string) => {
+export const validateLogin = (email: string, password: string) => {
   const { error } = loginSchema.validate({ email, password });
   const response = error?.message || '';
   const { type } = error?.details[0] || {};
@@ -12,4 +13,13 @@ const validateLogin = (email: string, password: string) => {
   return { type: 'NULL', message: '' };
 };
 
-export default validateLogin;
+export const validateTeams = (data: Match) => {
+  const { homeTeamId, awayTeamId } = data;
+  if (homeTeamId === awayTeamId) {
+    return {
+      type: 'unprocessable',
+      message: { message: 'It is not possible to create a match with two equal teams' } };
+  }
+
+  return { type: 'NULL', message: '' };
+};
