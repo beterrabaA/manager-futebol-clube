@@ -23,6 +23,14 @@ class MatchController {
 
     return res.status(mapError(type)).json(message);
   };
+
+  public finish = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const { type, message } = await this.service.finishMatch(Number(id));
+
+    return res.status(mapError(type)).json({ message });
+  };
 }
 
 export default MatchController;
