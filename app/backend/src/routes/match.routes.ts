@@ -12,4 +12,6 @@ matchRouter.get('/matches', matController.findAll); // GET /teams
 
 matchRouter.patch('/matches/:id/finish', validateJWT, matController.finish); // PATCH /teams/:id/finish
 
+matchRouter.patch('/matches/:id', validateJWT, matController.update); // PATCH /teams/:id
+
 export default matchRouter;
