@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { tokenGenerator } from '../utils/token';
 import Users from '../database/models/UserModel';
 import TypeMsg from '../interfaces/resService.interface';
-import validateLogin from './validations/validationsInputsValues';
+import { validateLogin } from './validations/validationsInputsValues';
 
 export default class UserService {
   public model: ModelStatic<Users>;
