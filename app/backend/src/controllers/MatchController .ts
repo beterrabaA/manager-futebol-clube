@@ -43,6 +43,12 @@ class MatchController {
 
     return res.status(mapError(type)).json({ message });
   };
+
+  public create = async (req: Request, res: Response) => {
+    const { type, message } = await this.service.createMatch(req.body);
+
+    return res.status(mapError(type)).json(message);
+  };
 }
 
 export default MatchController;
