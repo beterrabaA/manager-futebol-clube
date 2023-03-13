@@ -2,6 +2,7 @@ import { ModelStatic } from 'sequelize';
 import Teams from '../database/models/TeamModel';
 import Matches from '../database/models/MatchModel';
 import MatchData from '../interfaces/matchData.interface';
+import Match from '../interfaces/match.interface';
 
 export default class MatchService {
   private model: ModelStatic<Matches>;
@@ -64,5 +65,11 @@ export default class MatchService {
     }
 
     return { type: 'badRequest', message: 'Match already finished' };
+  }
+
+  public async createMatch(data: Match) {
+    const match = await this.model.create({ ...data, inProgress: true });
+
+    return { type: 'created', message: match };
   }
 }
