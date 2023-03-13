@@ -5,7 +5,7 @@ const errorMap = {
   unauthorized: 401,
   notFound: 404,
   conflict: 409,
-  invalidData: 422,
+  unprocessable: 422,
 } as { [key: string]: number };
 
 const mapError = (type: string) => errorMap[type] || 500;
