@@ -5,9 +5,9 @@ const validateLogin = (email: string, password: string) => {
   const response = error?.message || '';
   const { type } = error?.details[0] || {};
   if (type === 'string.email' || type === 'string.min') {
-    return { type: 'invalidToken', message: { message: response } };
+    return { type: 'unauthorized', message: { message: response } };
   }
-  if (error) return { type: 'missingKey', message: { message: response } };
+  if (error) return { type: 'badRequest', message: { message: response } };
 
   return { type: 'NULL', message: '' };
 };

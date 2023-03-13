@@ -25,7 +25,7 @@ export default class UserService {
 
     console.log(users?.dataValues);
     if (!users || !vPass) {
-      return { type: 'invalidToken',
+      return { type: 'unauthorized',
         message: {
           message: 'Invalid email or password' } };
     }
