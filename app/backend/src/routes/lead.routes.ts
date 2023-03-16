@@ -6,6 +6,6 @@ const leadRouter = Router();
 
 const leadController = new LeadBoardController();
 
-leadRouter.get('/leadboard', leadController.findAll); // GET /leadboard
+leadRouter.get('/leaderboard', leadController.findAll); // GET /leadboard
 
 export default leadRouter;
