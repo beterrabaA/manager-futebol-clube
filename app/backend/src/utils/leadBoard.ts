@@ -9,5 +9,4 @@ const sortList = (list: listLead[]) =>
     return a.goalsOwn - b.goalsOwn;
   });
 
-
 export default sortList;
