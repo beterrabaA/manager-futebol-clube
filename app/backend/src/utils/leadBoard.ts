@@ -1,6 +1,7 @@
+import Placar from '../interfaces/placar.interface';
 import listLead from '../interfaces/listLead.interface';
 
-const sortList = (list: listLead[]) =>
+export const sortList = (list: listLead[]) =>
   list.sort((a, b) => {
     if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
     if (b.totalVictories !== a.totalVictories) return b.totalVictories - a.totalVictories;
@@ -9,4 +10,22 @@ const sortList = (list: listLead[]) =>
     return a.goalsOwn - b.goalsOwn;
   });
 
-export default sortList;
+export const contaVitorias = (placar:Placar[]) => {
+  let totalVictories = 0;
+  let totalDraws = 0;
+  let totalLosses = 0;
+  placar.forEach((e: Placar) => {
+    if (e.feito > e.levado) {
+      totalVictories += 1;
+    } else if (e.feito === e.levado) {
+      totalDraws += 1;
+    } else {
+      totalLosses += 1;
+    }
+  });
+
+  return {
+    totalVictories,
+    totalDraws,
+    totalLosses };
+};
