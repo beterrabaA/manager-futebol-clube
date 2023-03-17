@@ -1,12 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import Teams from '../database/models/TeamModel';
 import Matches from '../database/models/MatchModel';
-import sortList from '../utils/leadBoard';
-
-interface Placar {
-  feito: number;
-  levado: number;
-}
+import { contaVitorias, sortList } from '../utils/leadBoard';
 
 export default class LeadService {
   private match: ModelStatic<Matches>;
@@ -34,26 +29,6 @@ export default class LeadService {
     return filtered;
   }
 
-  protected contaVitorias = (placar:Placar[]) => {
-    let totalVictories = 0;
-    let totalDraws = 0;
-    let totalLosses = 0;
-    placar.forEach((e: Placar) => {
-      if (e.feito > e.levado) {
-        totalVictories += 1;
-      } else if (e.feito === e.levado) {
-        totalDraws += 1;
-      } else {
-        totalLosses += 1;
-      }
-    });
-
-    return {
-      totalVictories,
-      totalDraws,
-      totalLosses };
-  };
-
   protected async getMatches(id: number) {
     const matches = await this.getList();
 
@@ -72,7 +47,7 @@ export default class LeadService {
     const goals = await this.getMatches(id);
     const goalsFavor = goals.reduce((a, b) => a + b.feito, 0);
     const goalsOwn = goals.reduce((a, b) => a + b.levado, 0);
-    const contagem = await this.contaVitorias(goals);
+    const contagem = await contaVitorias(goals);
     const { totalVictories, totalDraws } = contagem;
 
     const totalPoints = totalVictories * 3 + totalDraws;
