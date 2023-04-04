@@ -23,7 +23,6 @@ export default class UserService {
 
     const vPass = bcrypt.compareSync(password, users?.dataValues.password || '-');
 
-    console.log(users?.dataValues);
     if (!users || !vPass) {
       return { type: 'unauthorized',
         message: {

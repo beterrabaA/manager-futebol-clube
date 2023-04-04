@@ -19,7 +19,6 @@ class UserController {
 
   public role = async (req: CustomRequest, res: Response) => {
     const { role } = req;
-    console.log(role);
     return res.status(200).json({ role });
   };
 }

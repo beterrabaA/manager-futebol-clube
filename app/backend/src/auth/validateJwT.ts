@@ -20,7 +20,6 @@ class Midlleware {
 
     try {
       const decoded = tokenDecoder(token) as Iuser;
-      console.log(decoded);
       const user = await this.service.getUserByEmail(decoded.email);
       if (!user) return res.status(401).json({ message: 'Token must be a valid token' });
 
